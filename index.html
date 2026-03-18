@@ -741,7 +741,7 @@ footer {
     <div class="hero-left">
       <div class="hero-badge">
         <div class="badge-dot"></div>
-        <span class="badge-text">Product Manager · Open to Opportunities</span>
+        <span class="badge-text">Senior Product Manager · Open to Opportunities</span>
       </div>
       <h1 class="hero-name">Anshika<br><span>Nagori</span></h1>
       <p class="hero-tagline">A PM who <strong>goes deep before going fast</strong> — understanding customers, data, and systems before touching a solution. The person her team relies on when things get complex.</p>
@@ -838,7 +838,7 @@ footer {
       </div>
     </div>
     <div class="about-right">
-      <p class="about-p">Product Manager with deep expertise in payments infrastructure, cross-border transactions, and AI-powered enterprise products. I've owned card-enabled payment flows across 14+ European retail markets at Western Union, and currently lead UX and workflow strategy for an ML-powered cyber resilience platform.</p>
+      <p class="about-p">Senior Product Manager with deep expertise in payments infrastructure, cross-border transactions, and AI-powered enterprise products. I've owned card-enabled payment flows across 14+ European retail markets at Western Union, and currently lead UX and workflow strategy for an ML-powered cyber resilience platform.</p>
       <p class="about-p">I don't jump to solutions. I instrument the flow, talk to the people closest to the problem, analyse what the data is telling me — and what it isn't — then make a decision. That approach turned a transaction failure problem into an 18% abandonment reduction. It also helped me identify four critical AI explainability gaps in a live ML product that the previous PM missed.</p>
       <p class="about-p"><strong>What makes me different:</strong> I'm energised by understanding people — customers, agents, stakeholders. I'm rigorous about data but humble enough to know its limits. I make sound judgment calls when perfect information isn't available. And I'm the person my team calls when things get complex.</p>
       <div class="skills-wrap">
@@ -864,7 +864,7 @@ footer {
   <footer>
     <div>
       <div class="footer-name">Anshika Nagori</div>
-      <div class="footer-sub">Product Manager · Pune, India</div>
+      <div class="footer-sub">Senior Product Manager · Pune, India</div>
     </div>
     <a href="https://www.linkedin.com/in/anshika-nagori/" target="_blank" class="footer-link">LinkedIn ↗</a>
   </footer>
@@ -876,7 +876,7 @@ footer {
     <button class="back-btn" onclick="showPage('home')">← Back to Portfolio</button>
     <div class="cs-hero-badge">Case Study 01 · Western Union · 2023–2025</div>
     <h1 class="cs-hero-title">Reducing Card Payment<br><em>Abandonment by 18%</em></h1>
-    <p class="cs-hero-desc">How going deep on data and agent behaviour — before touching a single solution — uncovered the real problem and drove measurable results across 14+ European markets.</p>
+    <p class="cs-hero-desc">How reframing a payment failure problem as a decision system problem — and building a structured classification model — drove measurable results across 14+ European markets.</p>
     <div class="cs-meta-row">
       <div class="cs-meta-item"><span class="cs-meta-label">Company</span><span class="cs-meta-value">Western Union</span></div>
       <div class="cs-meta-item"><span class="cs-meta-label">Markets</span><span class="cs-meta-value">14+ European</span></div>
@@ -886,65 +886,84 @@ footer {
   </div>
 
   <div class="cs-content">
+
     <div class="cs-block">
       <div class="block-label">01 · Context</div>
-      <h2 class="block-title">The Problem</h2>
-      <p class="block-p">At Western Union retail locations across Europe, customers come in to send money cross-border using debit and credit cards at the point of sale. These are high-value, in-person transactions where both reliability and fraud prevention are critical.</p>
-      <p class="block-p">We started seeing <strong>higher-than-expected transaction failures and abandonment during the payment step.</strong> The instinct would be to jump straight to fixes — but that's exactly what I didn't do.</p>
+      <h2 class="block-title">The <em>Environment</em></h2>
+      <p class="block-p">I owned card-enabled cross-border transaction flows across 14+ European markets within a high-volume payments platform at Western Union.</p>
+      <p class="block-p">These transactions were high-value, time-sensitive, and highly dependent on issuer responses and fraud checks. Even small inefficiencies in handling failures directly impacted conversion, revenue realisation, and customer trust.</p>
       <div class="insight">
-        <div class="insight-label">My Approach</div>
-        <div class="insight-text">"Before touching a solution, I needed to understand what was actually happening — not what we assumed was happening."</div>
+        <div class="insight-label">The Stakes</div>
+        <div class="insight-text">In cross-border payments at this scale, a failure isn't just a bad experience — it's lost revenue, lost trust, and a potential compliance risk. Every declined transaction is a decision point that the system and the user must navigate correctly.</div>
       </div>
     </div>
 
     <div class="cs-block">
-      <div class="block-label">02 · Discovery</div>
-      <h2 class="block-title">Understanding <em>Behaviour First</em></h2>
-      <p class="block-p">I instrumented the payment flow and used Quantum Metric to replay real transactions — observing how agents actually handled declines in live scenarios across our highest-volume markets.</p>
-      <p class="block-p">This surfaced an insight that wasn't visible in the raw decline data alone:</p>
-      <div class="insight">
-        <div class="insight-label">Key Insight</div>
-        <div class="insight-text">The issue wasn't just the declines themselves — it was the absence of actionable guidance. Agents were seeing generic error messages and couldn't tell whether to retry, switch cards, or stop due to fraud risk. This caused both customer drop-offs and unnecessary risk exposure.</div>
-      </div>
-      <p class="block-p">This distinction mattered enormously. A solution targeting "decline rates" would have missed the real problem entirely. The real problem was a <strong>decision support gap</strong> at the point of failure.</p>
-    </div>
-
-    <div class="cs-block">
-      <div class="block-label">03 · Prioritisation</div>
-      <h2 class="block-title">Data-Driven <em>Prioritisation</em></h2>
-      <p class="block-p">There were many different decline reasons contributing to failures. Rather than trying to solve everything at once, I analysed trends across our largest markets and identified the <strong>top five highest-impact decline categories</strong> to address first.</p>
+      <div class="block-label">02 · Problem</div>
+      <h2 class="block-title">More Than a <em>UX Problem</em></h2>
+      <p class="block-p">A significant portion of transactions were failing at the authorisation stage, leading to high abandonment rates. The surface-level reading was a UX problem. The reality was deeper.</p>
       <div class="steps">
-        <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Analyse decline data across all major markets</div><div class="step-desc">Mapped decline reasons by volume, frequency, and commercial impact across 14+ European markets.</div></div></div>
-        <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Identify top 5 highest-impact categories</div><div class="step-desc">Selected categories where actionable guidance would have the greatest effect on abandonment and risk exposure.</div></div></div>
-        <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Partner with Risk to classify into tiers</div><div class="step-desc">Worked with the Risk team to classify each category: block / safe retry / switch to alternative method.</div></div></div>
-        <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Embed guidance directly into POS workflow</div><div class="step-desc">Partnered with Engineering to surface clear, context-specific guidance at the exact moment of decline.</div></div></div>
-        <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">Incremental rollout → measure → expand</div><div class="step-desc">Released market by market, measured agent behaviour and transaction outcomes, then expanded iteratively.</div></div></div>
+        <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Opaque issuer decline responses</div><div class="step-desc">Generic decline codes provided no actionable guidance on what to do next — retry, switch method, or stop.</div></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Inconsistent retry behaviour</div><div class="step-desc">Without classification, retries were unpredictable — causing unnecessary attempts on hard declines and missed recoveries on soft ones.</div></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Operational ambiguity</div><div class="step-desc">Frontline users lacked clarity on next best action — leading to inconsistent handling and avoidable drop-offs.</div></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Fragmented handling across markets</div><div class="step-desc">Decline handling varied market to market with no standard logic — making the experience inconsistent and unscalable.</div></div></div>
+      </div>
+      <div class="insight">
+        <div class="insight-label">Net Effect</div>
+        <div class="insight-text">Users dropped off after failed attempts, resulting in lost revenue and a poor reliability perception — not because declines were unavoidable, but because the system offered no guidance on how to recover from them.</div>
       </div>
     </div>
 
     <div class="cs-block">
-      <div class="block-label">04 · Outcome</div>
+      <div class="block-label">03 · My Approach</div>
+      <h2 class="block-title">Reframing as a <em>Decision System Problem</em></h2>
+      <p class="block-p">Instead of treating this as a UX issue alone, I approached it as a decision system problem. The question wasn't "how do we make the failure message better?" — it was "how do we make the system guide the right next action every time?"</p>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Deep failure analysis</div><div class="step-desc">Analysed large-scale issuer decline datasets across top markets. Identified high-frequency decline categories, behavioural patterns, and segmented failures by recoverability and risk.</div></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Core insight — not all declines are equal</div><div class="step-desc">The system needed to guide what to do next, not just show failure. This reframe changed everything about the solution direction.</div></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Built a structured decline classification model</div><div class="step-desc">Partnered with Risk to design three tiers: Hard decline (block — do not retry) · Soft decline (safe retry with conditions) · Alternate path (suggest different payment method).</div></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Embedded into product flows</div><div class="step-desc">Integrated classification logic into transaction workflows. Improved system guidance for retries and alternatives. Ensured consistency across all markets.</div></div></div>
+      </div>
+    </div>
+
+    <div class="cs-block">
+      <div class="block-label">04 · Key Product Decisions</div>
+      <h2 class="block-title">The <em>Trade-offs</em> I Navigated</h2>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Reduce unnecessary retries vs. maximise recovery</div><div class="step-desc">Higher retries could increase conversion but also risk fraud and issuer blocks. Decision: controlled retries based on decline type — not a blanket retry policy.</div></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Standardisation vs. market-specific behaviour</div><div class="step-desc">Flexibility across markets risks inconsistency and unscalable logic. Decision: standard core classification with limited, well-defined market overrides.</div></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">System guidance vs. user autonomy</div><div class="step-desc">Over-automation removes human judgment; full autonomy creates inconsistency. Decision: guided recommendations embedded in the workflow — not forced actions.</div></div></div>
+      </div>
+    </div>
+
+    <div class="cs-block">
+      <div class="block-label">05 · Impact</div>
       <h2 class="block-title">What We <em>Achieved</em></h2>
       <div class="outcome-row">
         <div class="outcome-card"><div class="outcome-num">18%</div><div class="outcome-label">Reduction in card payment abandonment across high-value retail transactions</div></div>
-        <div class="outcome-card"><div class="outcome-num">14+</div><div class="outcome-label">European markets covered with structured decline classification</div></div>
-        <div class="outcome-card"><div class="outcome-num">E2E</div><div class="outcome-label">Full ownership from discovery through delivery and post-launch optimisation</div></div>
+        <div class="outcome-card"><div class="outcome-num">14+</div><div class="outcome-label">European markets with consistent, structured decline classification</div></div>
+        <div class="outcome-card"><div class="outcome-num">E2E</div><div class="outcome-label">Full ownership from failure analysis through classification model, delivery, and optimisation</div></div>
+      </div>
+      <div class="insight">
+        <div class="insight-label">Beyond the Metric</div>
+        <div class="insight-text">This work established a scalable foundation for transaction decisioning — improving confidence in handling failures at scale and contributing to more predictable, reliable payment flows. The classification model itself became a reusable asset for future decline handling work.</div>
       </div>
     </div>
 
     <div class="cs-block">
-      <div class="block-label">05 · Reflection</div>
+      <div class="block-label">06 · Reflection</div>
       <h2 class="block-title">What I <em>Learned</em></h2>
-      <p class="block-p">The most important decision I made was the first one: to not jump to solutions. Most PM instincts — and most stakeholder pressure — push towards speed. But speed without understanding leads to solving the wrong problem.</p>
-      <p class="block-p">The data you don't have is as important as the data you do. Session replays and agent observation surfaced the guidance gap — something no decline report would have shown. <strong>Understanding the limits of your data is a core PM skill.</strong></p>
-      <p class="block-p">And finally: iterating based on evidence, rather than shipping everything at once, was what made the improvement durable. Each market rollout taught us something that made the next one better.</p>
+      <p class="block-p">The most valuable reframe on this project was recognising that decline handling wasn't a UX problem — it was a decision system problem. Solving it at the UX layer alone would have produced better error messages. Solving it at the system layer produced an 18% reduction in abandonment.</p>
+      <p class="block-p"><strong>The data you don't have is as important as the data you do.</strong> Understanding which declines were recoverable — and which weren't — required going beyond surface metrics into the underlying issuer logic. That analysis was what made the classification model possible.</p>
+      <p class="block-p">And finally: the trade-off between standardisation and flexibility is never fully resolved — it's managed. The decision to use standard core logic with limited market overrides was right at the time, and building in the ability to revisit it was just as important as the decision itself.</p>
     </div>
+
   </div>
 
   <footer>
     <div>
       <div class="footer-name">Anshika Nagori</div>
-      <div class="footer-sub">Product Manager · Pune, India</div>
+      <div class="footer-sub">Senior Product Manager · Pune, India</div>
     </div>
     <button class="back-btn" onclick="showPage('home')" style="margin-bottom:0;">← Back to Portfolio</button>
     <a href="https://www.linkedin.com/in/anshika-nagori/" target="_blank" class="footer-link">LinkedIn ↗</a>
@@ -961,7 +980,7 @@ footer {
     <div class="cs-meta-row">
       <div class="cs-meta-item"><span class="cs-meta-label">Industry</span><span class="cs-meta-value">Cyber Security</span></div>
       <div class="cs-meta-item"><span class="cs-meta-label">Product Type</span><span class="cs-meta-value">Enterprise AI Platform</span></div>
-      <div class="cs-meta-item"><span class="cs-meta-label">My Role</span><span class="cs-meta-value">PM — UX</span></div>
+      <div class="cs-meta-item"><span class="cs-meta-label">My Role</span><span class="cs-meta-value">Senior PM — UX</span></div>
       <div class="cs-meta-item"><span class="cs-meta-label">Focus</span><span class="cs-meta-value">Explainable AI (XAI)</span></div>
     </div>
   </div>
