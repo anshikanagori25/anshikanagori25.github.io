@@ -1120,6 +1120,277 @@ footer {
 
     <div class="cs-block">
       <div class="block-label">01 · Payments Decline Intelligence Agent</div>
+      <h2 class="block-title">Single Agent: Classifying European Issuer<br><em>Decline Codes with AI</em></h2>
+      <p class="block-p">My first agentic workflow — a proof-of-concept that searches live Visa, Mastercard, and Adyen documentation, classifies decline codes into actionable tiers, and outputs a structured database with European market relevance. Built to understand how agents reason, use tools, and produce structured outputs.</p>
+
+      <div class="insight">
+        <div class="insight-label">What I Learned</div>
+        <div class="insight-text">Prompt design is harder than building the workflow. LLM outputs are non-deterministic — the same prompt produced different JSON structures across runs. Domain knowledge is what makes an agent intelligent, not the tooling.</div>
+      </div>
+
+      <div class="cs-tags" style="margin-top:16px; margin-bottom:8px;">
+        <span class="cs-tag tag-green">n8n</span>
+        <span class="cs-tag tag-green">Groq LLaMA</span>
+        <span class="cs-tag tag-green">Serper API</span>
+        <span class="cs-tag tag-grey">Single Agent</span>
+        <span class="cs-tag tag-grey">Prompt Engineering</span>
+      </div>
+    </div>
+
+    <div class="cs-block">
+      <div class="block-label">02 · Multi-Agent Payment Decision System</div>
+      <h2 class="block-title">End-to-End Payment Decision<br><em>Pipeline with Three Agents</em></h2>
+      <p class="block-p">An evolution from a single agent to a coordinated multi-agent system that simulates a real-world payment decision pipeline. The system chains three specialised agents through an orchestration layer — each with a distinct responsibility, designed to reflect how payments decisions actually work in production environments.</p>
+
+      <div class="insight">
+        <div class="insight-label">Why This Is Different</div>
+        <div class="insight-text">Most AI demos are single-step. Real payment systems are multi-step, conditional, and require explainable decisions at each stage. This system mirrors that reality — combining deterministic rule logic with LLM reasoning, and chaining agents based on outcomes rather than sequence.</div>
+      </div>
+
+      <h3 style="font-size:18px; font-weight:700; color:var(--ink); margin:28px 0 16px; letter-spacing:-0.5px;">The Three Agents</h3>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">Fraud Detection Agent</div>
+            <div class="step-desc">Computes a risk score using deterministic logic and weighted signals — transaction amount, velocity, device trust, location anomaly, and behavioural patterns. Produces explainable outputs showing the contribution of each signal to the final score. No black box: every score is traceable.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">Fraud Decision Agent</div>
+            <div class="step-desc">Combines rule-based thresholds with LLM reasoning to make a final decision under uncertainty. Outputs one of three decisions — approve, challenge (3DS), or block — along with a plain-English reasoning explanation and a confidence score. Designed to handle edge cases where rules alone are insufficient.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">Routing Optimisation Agent</div>
+            <div class="step-desc">Runs only for approved transactions. Generates multiple routing options, scores each by balancing success rate against cost in basis points, and selects the best route with a fallback. Routing only happens when it's safe to — the orchestration layer ensures this.</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-size:18px; font-weight:700; color:var(--ink); margin:28px 0 16px; letter-spacing:-0.5px;">The Orchestration Layer</h3>
+      <p class="block-p">The orchestration layer chains agents using conditional logic — not a fixed sequence. The decision tree is:</p>
+
+      <div class="journey" style="margin:20px 0;">
+        <div class="journey-col broken">
+          <div class="journey-head">Block Path</div>
+          <div class="journey-body">
+            <div class="journey-row"><div class="j-dot"></div>Fraud Detection Agent scores transaction</div>
+            <div class="journey-row"><div class="j-dot"></div>Fraud Decision Agent outputs: Block</div>
+            <div class="journey-row"><div class="j-dot"></div>Pipeline stops — no routing</div>
+            <div class="journey-row"><div class="j-dot"></div>Unified output: blocked with reasoning</div>
+          </div>
+        </div>
+        <div class="journey-col fixed">
+          <div class="journey-head">Approve Path</div>
+          <div class="journey-body">
+            <div class="journey-row"><div class="j-dot"></div>Fraud Detection Agent scores transaction</div>
+            <div class="journey-row"><div class="j-dot"></div>Fraud Decision Agent outputs: Approve</div>
+            <div class="journey-row"><div class="j-dot"></div>Routing Agent selects optimal route</div>
+            <div class="journey-row"><div class="j-dot"></div>Unified output: approved with route</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="block-p">Challenge decisions trigger a 3DS flow — the pipeline pauses for authentication before routing proceeds. The orchestration layer produces a unified structured output across all branches, making the system readable and auditable end-to-end.</p>
+
+      <h3 style="font-size:18px; font-weight:700; color:var(--ink); margin:28px 0 16px; letter-spacing:-0.5px;">Key Design Decisions</h3>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">Hybrid architecture — deterministic + LLM</div>
+            <div class="step-desc">Rule-based scoring for the fraud signal computation (fast, auditable, consistent) combined with LLM reasoning for the final decision (handles nuance and edge cases). Neither alone is sufficient for a production payment system.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">Explainability at every stage</div>
+            <div class="step-desc">Every agent produces human-readable reasoning alongside its structured output. The fraud score shows signal contributions. The decision agent explains why it approved, challenged, or blocked. The routing agent shows why it selected the chosen route. Explainability is a design requirement, not an afterthought.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">Conditional chaining over sequential execution</div>
+            <div class="step-desc">The routing agent only runs when the decision agent approves. This mirrors how real payment systems work — downstream processes are gated by upstream decisions, not just triggered in sequence.</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-size:18px; font-weight:700; color:var(--ink); margin:28px 0 16px; letter-spacing:-0.5px;">What This Demonstrates as a PM</h3>
+
+      <div class="insight">
+        <div class="insight-label">System Design Thinking</div>
+        <div class="insight-text">This isn't a demo — it's a design. Every decision in the system reflects real product thinking: what should be deterministic vs. what requires reasoning, when to stop vs. when to proceed, how to make AI decisions explainable to humans under pressure. That thinking is the PM contribution, independent of the implementation.</div>
+      </div>
+
+      <div class="cs-tags" style="margin-top:24px; margin-bottom:8px;">
+        <span class="cs-tag tag-green">Multi-Agent System</span>
+        <span class="cs-tag tag-green">Hybrid Architecture</span>
+        <span class="cs-tag tag-green">Explainable AI</span>
+        <span class="cs-tag tag-grey">Fraud Detection</span>
+        <span class="cs-tag tag-grey">Payment Routing</span>
+        <span class="cs-tag tag-grey">Conditional Orchestration</span>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div>
+      <div class="footer-name">Anshika Nagori</div>
+      <div class="footer-sub">Senior Product Manager · Pune, India</div>
+    </div>
+    <button class="back-btn" onclick="showPage('home')" style="margin-bottom:0;">← Back to Portfolio</button>
+    <a href="https://www.linkedin.com/in/anshika-nagori/" target="_blank" class="footer-link">LinkedIn ↗</a>
+  </footer>
+</div>
+
+<!-- ========== CASE STUDY 2: SECURITY AI ========== -->
+<div class="page" id="page-cs2">
+  <div class="cs-hero">
+    <button class="back-btn" onclick="showPage('home')">← Back to Portfolio</button>
+    <div class="cs-hero-badge">Case Study 02 · Cyber Resilience Platform · 2025</div>
+    <h1 class="cs-hero-title">Improving <em>Human-AI</em><br>Interaction</h1>
+    <p class="cs-hero-desc">How I identified four critical UX gaps in an ML-powered ransomware detection platform and proposed a redesign grounded in Explainable AI principles.</p>
+    <div class="cs-meta-row">
+      <div class="cs-meta-item"><span class="cs-meta-label">Industry</span><span class="cs-meta-value">Cyber Security</span></div>
+      <div class="cs-meta-item"><span class="cs-meta-label">Product Type</span><span class="cs-meta-value">Enterprise AI Platform</span></div>
+      <div class="cs-meta-item"><span class="cs-meta-label">My Role</span><span class="cs-meta-value">Senior PM — UX</span></div>
+      <div class="cs-meta-item"><span class="cs-meta-label">Focus</span><span class="cs-meta-value">Explainable AI (XAI)</span></div>
+    </div>
+  </div>
+
+  <div class="cs-content">
+    <div class="cs-block">
+      <div class="block-label">01 · Context</div>
+      <h2 class="block-title">The Product</h2>
+      <p class="block-p">I work as Senior PM on an enterprise cyber resilience platform that uses machine learning to detect ransomware attacks. The system compares file system snapshots across backup cycles, identifying attack patterns before they cause irreversible data loss.</p>
+      <div class="insight">
+        <div class="insight-label">The Core Challenge</div>
+        <div class="insight-text">The ML detection engine is highly accurate — but its outputs are not self-explanatory to the security admin who must act on them, often in the middle of the night during a live attack.</div>
+      </div>
+    </div>
+
+    <div class="cs-block">
+      <div class="block-label">02 · How It Works</div>
+      <h2 class="block-title">The Detection <em>Pipeline</em></h2>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Snapshot Comparison</div><div class="step-desc">Compares today's backup against the previous one, tracking every file-level change across the system.</div></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Signal Extraction</div><div class="step-desc">Generates statistical signals from the comparison — file behaviour patterns, size changes, and type distributions.</div></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Anomaly Detection</div><div class="step-desc">ML model analyses signals to identify patterns characteristic of ransomware, such as mass file encryption or unusual deletions.</div></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">ML Model Prediction</div><div class="step-desc">A trained ML model combines all signals to predict whether an attack has occurred, with a confidence score indicating likelihood.</div></div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">Alert Generation</div><div class="step-desc">Outputs alerts with severity levels and file-level detail into the application UI for security admin review.</div></div></div>
+      </div>
+    </div>
+
+    <div class="cs-block">
+      <div class="block-label">03 · Problems Identified</div>
+      <h2 class="block-title">Four Gaps <em>I Found</em></h2>
+      <p class="block-p">Through close analysis of the live alert UI and deep understanding of the ML system at a product level, I independently identified four interconnected problems.</p>
+      <div class="problem-grid">
+        <div class="problem-card p1"><div class="problem-num">01</div><div class="problem-title">Alert Fatigue</div><div class="problem-desc">Thousands of alerts across hundreds of pages. When everything is flagged at the same severity, labels become meaningless and admins face decision paralysis.</div></div>
+        <div class="problem-card p2"><div class="problem-num">02</div><div class="problem-title">Explainability Gap</div><div class="problem-desc">Raw ML scores displayed to security admins under pressure don't answer the only question that matters: should I recover this file right now?</div></div>
+        <div class="problem-card p3"><div class="problem-num">03</div><div class="problem-title">Workflow Fragmentation</div><div class="problem-desc">The user's job is to recover from an attack — but threat details and last clean backup are never shown together, forcing stressful navigation.</div></div>
+        <div class="problem-card p4"><div class="problem-num">04</div><div class="problem-title">No Progressive Disclosure</div><div class="problem-desc">Critical and High severity look nearly identical as text labels. No visual hierarchy pulls attention to what genuinely requires immediate action.</div></div>
+      </div>
+    </div>
+
+    <div class="cs-block">
+      <div class="block-label">04 · User Journey</div>
+      <h2 class="block-title">Before vs. <em>After</em></h2>
+      <p class="block-p">The user's job-to-be-done isn't "read alerts" — it's "recover from a ransomware attack as fast as possible."</p>
+      <div class="journey">
+        <div class="journey-col broken">
+          <div class="journey-head">Current Journey — Broken</div>
+          <div class="journey-body">
+            <div class="journey-row"><div class="j-dot"></div>Open alerts → thousands of undifferentiated rows</div>
+            <div class="journey-row"><div class="j-dot"></div>Scroll through hundreds of pages to find real threat</div>
+            <div class="journey-row"><div class="j-dot"></div>Click alert → see raw ML score with no guidance</div>
+            <div class="journey-row"><div class="j-dot"></div>Navigate separately to find last clean backup</div>
+            <div class="journey-row"><div class="j-dot"></div>Make recovery decision with incomplete context</div>
+          </div>
+        </div>
+        <div class="journey-col fixed">
+          <div class="journey-head">Proposed Journey — Fixed</div>
+          <div class="journey-body">
+            <div class="journey-row"><div class="j-dot"></div>Dashboard surfaces critical incidents with visual severity</div>
+            <div class="journey-row"><div class="j-dot"></div>Colour-coded indicators replace raw ML scores</div>
+            <div class="journey-row"><div class="j-dot"></div>Last clean backup shown inline with each alert</div>
+            <div class="journey-row"><div class="j-dot"></div>Action labels: "Recover Now" / "Investigate" / "Monitor"</div>
+            <div class="journey-row"><div class="j-dot"></div>Recovery decision in one screen, under 2 minutes</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-block">
+      <div class="block-label">05 · Proposed Solutions</div>
+      <h2 class="block-title">What I'd <em>Build</em></h2>
+      <p class="block-p"><strong>Solution 1 — Colour-Coded ML Confidence Indicators</strong></p>
+      <p class="block-p">Replace raw model scores with a three-tier visual system mapped to recommended actions. The core principle of Explainable AI: don't show the model's math — show what the user should do.</p>
+      <table class="conf-table">
+        <thead><tr><th>Visual Indicator</th><th>ML Confidence Level</th><th>Recommended Action</th></tr></thead>
+        <tbody>
+          <tr><td><div class="ci"><div class="ci-dot ci-red"></div>Critical</div></td><td>High confidence — attack highly likely</td><td>Recover immediately — show last clean backup inline</td></tr>
+          <tr><td><div class="ci"><div class="ci-dot ci-amber"></div>Suspicious</div></td><td>Moderate confidence — anomaly detected</td><td>Investigate further before recovering</td></tr>
+          <tr><td><div class="ci"><div class="ci-dot ci-green"></div>Clean</div></td><td>Low confidence — likely safe</td><td>No action needed — safe to use for recovery</td></tr>
+        </tbody>
+      </table>
+      <p class="block-p"><strong>Solution 2 — Unified Recovery Dashboard</strong></p>
+      <p class="block-p">Redesign the homepage to surface critical alerts grouped by attack event, the last confirmed clean backup per host, and a one-click recovery initiation — collapsing a multi-screen workflow into a single decision surface.</p>
+      <p class="block-p"><strong>Solution 3 — Incident Grouping</strong></p>
+      <p class="block-p">A single attack affecting thousands of files should surface as one high-priority incident — not thousands of rows. This directly addresses alert fatigue and mirrors how leading security platforms present ML threat intelligence.</p>
+    </div>
+
+    <div class="cs-block">
+      <div class="block-label">06 · Validation Plan</div>
+      <h2 class="block-title">How I'd <em>Test This</em></h2>
+      <div class="val-steps">
+        <div class="val-step"><div class="val-num">1</div><div class="val-body"><div class="val-title">Usability Testing with Security Admins</div><div class="val-desc">Observe 3–5 enterprise admins using the current alert view during a simulated attack. Measure time-to-decision and error rate as baseline.</div></div></div>
+        <div class="val-step"><div class="val-num">2</div><div class="val-body"><div class="val-title">Define Success Metrics</div><div class="val-desc">Mean time to recovery decision · Alert dismissal rate · False positive acknowledgement rate · Admin confidence score (self-reported)</div></div></div>
+        <div class="val-step"><div class="val-num">3</div><div class="val-body"><div class="val-title">A/B Test Alert Grouping</div><div class="val-desc">Individual row view vs. incident-grouped view. Measure impact on response time and rate of missed critical alerts.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div>
+      <div class="footer-name">Anshika Nagori</div>
+      <div class="footer-sub">Senior Product Manager · Pune, India</div>
+    </div>
+    <button class="back-btn" onclick="showPage('home')" style="margin-bottom:0;">← Back to Portfolio</button>
+    <a href="https://www.linkedin.com/in/anshika-nagori/" target="_blank" class="footer-link">LinkedIn ↗</a>
+  </footer>
+</div>
+
+
+<!-- ========== AI EXPERIMENTS PAGE ========== -->
+<div class="page" id="page-ai">
+  <div class="cs-hero">
+    <button class="back-btn" onclick="showPage('home')">← Back to Portfolio</button>
+    <div class="cs-hero-badge">AI Experiments · Personal Projects · 2025</div>
+    <h1 class="cs-hero-title">AI Experiments &<br><em>Proof of Concepts</em></h1>
+    <p class="cs-hero-desc">Hands-on AI projects built to develop practical understanding of agentic workflows, prompt engineering, and AI product design — grounded in payments and security domain knowledge.</p>
+    <div class="cs-meta-row">
+      <div class="cs-meta-item"><span class="cs-meta-label">Tools</span><span class="cs-meta-value">n8n · Groq LLaMA · Serper API</span></div>
+      <div class="cs-meta-item"><span class="cs-meta-label">Type</span><span class="cs-meta-value">Personal Projects</span></div>
+      <div class="cs-meta-item"><span class="cs-meta-label">Focus</span><span class="cs-meta-value">AI Agents · Prompt Engineering</span></div>
+    </div>
+  </div>
+
+  <div class="cs-content">
+
+    <div class="cs-block">
+      <div class="block-label">01 · Payments Decline Intelligence Agent</div>
       <h2 class="block-title">Classifying European Issuer<br><em>Decline Codes with AI</em></h2>
       <p class="block-p">A proof-of-concept AI agent built in n8n that autonomously searches live Visa, Mastercard, and Adyen documentation, classifies European issuer decline codes into actionable tiers, and outputs a structured intelligence database with market-level relevance by country.</p>
 
